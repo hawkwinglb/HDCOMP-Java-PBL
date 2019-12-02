@@ -8,13 +8,14 @@ public class GroupLottery{
 
 	private int[] matches;
 	private double winnings;
+	private double lineWinnings;
 
 
 	private final double MATCH3 = 100;
 	private final double MATCH4 = 300;
 	private final double MATCH5 = 1500;
 	private final double MATCH6 = 1000000;//@alexia==> adding here the const of six matches for an amount of money won for the entire lottery
-	private final String MATCH6 = "You won the lottery! Stop now.";
+	private final String MATCH_6 = "You won the lottery! Stop now.";
 
 
 
@@ -78,7 +79,7 @@ public class GroupLottery{
 
 	public void calculateWinnings(){
 		//@alexia==> adding the method to calculate the winnings, @Laurine feel free to change anything here :-)
-		
+
 		winnings = 0; //initialize the sum of the winnings at 0
 		for(int i=0; i<matches.length; i++){ //loop into the array of matches (above) - each line represents one index in the array - to add to the entire sum of winnings for 1 game
 			if(matches[i] == 6){
