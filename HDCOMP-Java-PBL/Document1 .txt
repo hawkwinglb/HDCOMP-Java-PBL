@@ -1,0 +1,29 @@
+
+numberOfGames = 4
+
+array linesPerGame[2, 3, 1, 3]
+
+for i < numberOfGames i++
+	System.out.println(linesPerGame[i]);
+	
+	LinesInAGame = linesPerGame[i]
+	
+	
+	array matchesPerLinePerGame[][]
+	
+	inner array = matches
+	outer array is the number of lines
+	index of the outer array is the number of games
+	
+	
+	array[array[a, b, c], array[d, e, f], array[g, h, i]]
+	
+
+ winnings[index=numberofgames] = valueofwinnings
+ 
+ winnings[100, 0, 300]
+ 
+ winnings[numberofgames-1] = 100
+	
+	
+	
