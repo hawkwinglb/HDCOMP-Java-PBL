@@ -13,6 +13,7 @@ public class GroupLottery{
 	private final double MATCH3 = 100;
 	private final double MATCH4 = 300;
 	private final double MATCH5 = 1500;
+	private final double MATCH6 = 1000000;//@alexia==> adding here the const of six matches for an amount of money won for the entire lottery
 	private final String MATCH6 = "You won the lottery! Stop now.";
 
 
@@ -76,6 +77,28 @@ public class GroupLottery{
 
 
 	public void calculateWinnings(){
+		//@alexia==> adding the method to calculate the winnings, @Laurine feel free to change anything here :-)
+		
+		winnings = 0; //initialize the sum of the winnings at 0
+		for(int i=0; i<matches.length; i++){ //loop into the array of matches (above) - each line represents one index in the array - to add to the entire sum of winnings for 1 game
+			if(matches[i] == 6){
+				lineWinnings = MATCH6; //store 1 000 000 into lineWinnings
+			} else if(matches[i] == 5){
+				lineWinnings = MATCH5; // store 1 500 into lineWinnings
+			} else if(matches[i] == 4){
+				lineWinnings = MATCH4; //store 300 into lineWinnings
+			} else if(matches[i] == 3){
+				lineWinnings = MATCH3; //store 100 into lineWinnings
+			}
+			winnings = winnings + lineWinnings; //add all line winnings together so these are the winnings for one game
+		}
+		//still need to discuss the below part of the method. This part allows to say that the lottery (1 million euros) is only won once per game
+		/**
+		if(winnings >= 3000000){ //however, user can only win the lottery once, so this will substract the winnings at only one time lottery win (can only win 1 million)
+			winnings = winnings - (2 * SIX_NUM); //basically says if more than 3 million, substract 2 million
+		} else if(sumWinnings >= 2000000){
+			sumWinnings = sumWinnings - SIX_NUM; //basically says if more than 2 million, substract 1 million
+		}*/
 	}
 
 
