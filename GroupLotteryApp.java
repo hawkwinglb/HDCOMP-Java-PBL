@@ -17,6 +17,9 @@ public static void main(String[] args){
 
 	double totalWinnings;
 
+	double winnings;
+	int linesWon;
+
 
 	int[][] gameHistory = new int[100][3];
 
@@ -80,17 +83,30 @@ public static void main(String[] args){
 
 			for(int i = 0; i < matches.length; i++){
 				System.out.println("You matched " + matches[i] + " numbers on line " + (i+1) + ".");
+				if(matches[i] == 6){
+					System.out.println("You won the whole lottery. You should stop now.");
+					controlCounter = 1; //after this do-while loop completes, exit the game.
+
+					}
 			}
 
-			//similar for loop for winnings
+			lottery.calculateWinnings();
 
+			winnings = lottery.getWinnings();
+			linesWon = lottery.getLinesWon();
+
+
+
+			System.out.println("You won " + winnings + " in this game. \nYou won " + linesWon + "lines.");
+
+			int integerWinnings = (int)winnings;
 
 			gameHistory[gameCounter-1][0] = noLines;
-//			gameHistory[gameCounter-1][1] = number of lines won (number of lines where 3 or more numbers matched) when we do the winnings calculation
-//			gameHistory[gameCounter-1][2] = winnings; when we do the winnings calculation
+			gameHistory[gameCounter-1][1] = linesWon; //number of lines won (number of lines where 3 or more numbers matched) when we do the winnings calculation
+			gameHistory[gameCounter-1][2] = integerWinnings; //when we do the winnings calculation
 
-
-	System.out.println("Do you want to play another game?\n Press 1 to play again. Press 2 to exit. \n Do not press any other keys.\n");
+	if(controlCounter != 1){
+		System.out.println("Do you want to play another game?\n Press 1 to play again. Press 2 to exit. \n Do not press any other keys.\n");
 
 			int commit = input.nextInt();
 
@@ -105,7 +121,7 @@ public static void main(String[] args){
 						control=1;
 						gameCounter++; 							//increments gamecounter variable
 						} 										//this selection statement allows the user to exit from the whole-game while loop.
-
+	} //this selection statement checks whether the user has already reached a game-ending state.
 
 
 
@@ -114,7 +130,7 @@ public static void main(String[] args){
 	}while(controlCounter != 0); 			 //whole-game while loop ends
 
 
-
+	//fetch history here
 
 
 

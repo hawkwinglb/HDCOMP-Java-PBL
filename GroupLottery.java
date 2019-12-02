@@ -9,6 +9,7 @@ public class GroupLottery{
 	private int[] matches;
 	private double winnings;
 	private double lineWinnings;
+	private int linesWon;
 
 
 	private final double MATCH3 = 100;
@@ -76,20 +77,28 @@ public class GroupLottery{
 			}
 		}
 
+	public int getLinesWon(){
+		return linesWon;
+		}
 
 	public void calculateWinnings(){
 		//@alexia==> adding the method to calculate the winnings, @Laurine feel free to change anything here :-)
 
 		winnings = 0; //initialize the sum of the winnings at 0
+		linesWon=0;
 		for(int i=0; i<matches.length; i++){ //loop into the array of matches (above) - each line represents one index in the array - to add to the entire sum of winnings for 1 game
 			if(matches[i] == 6){
 				lineWinnings = MATCH6; //store 1 000 000 into lineWinnings
+				linesWon +=1;
 			} else if(matches[i] == 5){
 				lineWinnings = MATCH5; // store 1 500 into lineWinnings
+				linesWon +=1;
 			} else if(matches[i] == 4){
 				lineWinnings = MATCH4; //store 300 into lineWinnings
+				linesWon +=1;
 			} else if(matches[i] == 3){
 				lineWinnings = MATCH3; //store 100 into lineWinnings
+				linesWon +=1;
 			}
 			winnings = winnings + lineWinnings; //add all line winnings together so these are the winnings for one game
 		}
