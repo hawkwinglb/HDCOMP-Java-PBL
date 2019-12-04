@@ -4,43 +4,33 @@ public class GroupLotteryApp{
 
 public static void main(String[] args){
 
-
 	Scanner input = new Scanner(System.in);
 
-	int[][] userNumbers;
-
-	int[] matches;
-
-	int gameCounter;
-
+	int[][] userNumbers; //array of the numbers user chooses to play the lottery
+	int[] matches; //array of the number of matches per line
+	int gameCounter; //count the number of games the user plays
 	double totalWinnings = 0;
-	double aveWinnings;
-
+	double aveWinnings; 
 	double winnings;
 	int linesWon;
+	int[][] gameHistory = new int[100][3]; //this is history of the game. It stores each game information on one row (so user can play up to 100 games). Each row contains three values: number of lines played, number of lines won (line won is a line matching at least 3 numbers with the random numbers line), and the total winnings per game.
 
-
-	int[][] gameHistory = new int[100][3];
-
-
-	gameCounter = 1;
+	
 	int noLines;
-
 	int controlCounter = 0;
 
 	System.out.println("You are playing a lottery game.\nFor each iteration of the game, six random numbers between 1 and 40 (inclusive) are generated. \nTo win the lottery, you must guess those numbers. \nIn each interation of the game, you may play up to three lines of six numbers. \nYou may continue playing the lottery game until you win the lottery(match six numbers) or until you choose to stop. \nPrize money is attached to matching: \n3 numbers: 100 euro\n4 numbers: 300 euro\n5 numbers: 1500 euro.\nAt the end of all game iterations, the average prize money won per game will be calculated and displayed.");
 
+	gameCounter = 1; //increment the number of games played. though, what if the user doesn't want to play anymore, is the exit only available at the end of one game?
+
 	do{
 
 		GroupLottery lottery = new GroupLottery();
-
+		
 		System.out.println("\nChoose how many lines you want to play in game: " + (gameCounter));
 		System.out.println("Enter number of lines: ");
 
-		//control input
-
-
-	int putter=0;
+	int putter=0; //control input
 	do{
 			noLines = input.nextInt();
 		if (noLines >=1 && noLines <=3){
@@ -87,21 +77,17 @@ public static void main(String[] args){
 				if(matches[i] == 6){
 					System.out.println("You won the whole lottery. You can play again soon, but we're going to stop you being greedy.");
 					controlCounter = 1; //after this do-while loop completes, exit the game.
-
-					}
+				}
 			}
 
-			lottery.calculateWinnings();
-
+			lottery.calculateWinnings(); //
 			winnings = lottery.getWinnings();
 			linesWon = lottery.getLinesWon();
 
-			totalWinnings = totalWinnings + winnings;
-
-
 			System.out.println("You won " + winnings + " in this game. \nYou won " + linesWon + "lines.");
 
-			int integerWinnings = (int)winnings;
+			totalWinnings = totalWinnings + winnings; 
+			int integerWinnings = (int)winnings; 
 
 			gameHistory[gameCounter-1][0] = noLines;
 			gameHistory[gameCounter-1][1] = linesWon; //number of lines won (number of lines where 3 or more numbers matched) when we do the winnings calculation
@@ -110,22 +96,18 @@ public static void main(String[] args){
 	if(controlCounter != 1){
 		System.out.println("Do you want to play another game?\n Press 1 to play again. Press 2 to exit. \n Do not press any other keys.\n");
 
-			int commit = input.nextInt();
-
-					if(commit<1 || commit>2){
-						System.out.println("That is not a valid number.\n");
-						}
-					else if(commit==2){
-						controlCounter=0;
-
-						}
-					else{
-						control=1;
-						gameCounter++; 							//increments gamecounter variable
-						} 										//this selection statement allows the user to exit from the whole-game while loop.
+		int commit = input.nextInt();
+		if(commit<1 || commit>2){
+			System.out.println("That is not a valid number.\n");
+		}
+			else if(commit==2){
+				controlCounter=0;
+			}
+			else{
+				control=1;
+				gameCounter++; //increments gamecounter variable
+			} //this selection statement allows the user to exit from the whole-game while loop.
 	} //this selection statement checks whether the user has already reached a game-ending state.
-
-
 
 
 	lottery.calculateAverage(totalWinnings, gameCounter);
@@ -152,10 +134,10 @@ public static void main(String[] args){
 	}
 
 	for(int i= 0; i<gameHistory.length;i++){ //display the number of lines played per game, the number of lines won per game, the total winnings per game
-				if(gameHistory[i][0] != 0){
-					System.out.println("\nFor game number " + (i+1) + ", you played " + gameHistory[i][0] + " line(s).\nYou won on " + gameHistory[i][1] + " line(s). \nYou won " + gameHistory[i][2] + " euro.");
-				}
+		if(gameHistory[i][0] != 0){
+		System.out.println("\nFor game number " + (i+1) + ", you played " + gameHistory[i][0] + " line(s).\nYou won on " + gameHistory[i][1] + " line(s). \nYou won " + gameHistory[i][2] + " euro.");
 		}
+	}
 
 
 
