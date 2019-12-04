@@ -1,3 +1,10 @@
+/** Instantiable class for Lottery application
+HDCOMP Software Development Project
+
+@authors Liz Bourke, Alexia Falcoz, Laurine Rolland
+
+*/
+
 import java.util.*;
 
 public class GroupLottery{
@@ -23,11 +30,42 @@ public class GroupLottery{
 
 
 
+	/*public GroupLottery(){
+		int[] array1 = new int[6];
+		for(int i=0; i<6; i=i+1){
+			Random myRandom = new Random();
+			int ranNum = myRandom.nextInt(6)+1;
+			array1[i] = ranNum;
+			}
+
+		int[] lottery = {0,0,0,0,0,0};
+		int next_space = 0;
+
+		boolean duplicate = false;
+		while(next_space<6){
+			int number_picked = array1[next_space];
+			for(int i = 0; i<lottery.length; i++){
+				if(number_picked == lottery[i]){
+					duplicate = true;
+					break;
+					}
+				else{
+					duplicate = false;
+					lottery[i] = number_picked;
+					}
+				}
+			if(duplicate = false){
+				lottery[next_space] = number_picked;
+				next_space = next_space +1;
+				}
+			}
+		}*/
+
 	public GroupLottery(){
 		lottery = new int[6];
 		for(int i=0; i<6; i=i+1){
 			Random myRandom = new Random();
-			int ranNum = myRandom.nextInt(6)+1;
+			int ranNum = myRandom.nextInt(40)+1;
 
 			if( (ranNum == lottery[0]) || (ranNum == lottery[1]) || (ranNum == lottery[2]) || (ranNum == lottery[3]) || (ranNum == lottery[4]) || (ranNum == lottery[5]) ){
 				i= i-1;
@@ -37,6 +75,11 @@ public class GroupLottery{
 				}
 			}
 		}
+
+
+
+
+
 
 
 	public void setUserNumbers(int userNumbers[][]){
@@ -68,14 +111,15 @@ public class GroupLottery{
 	public void calculateMatches(){
 
 		matches = new int[userNumbers.length];
-
+		int match = 0;
 		for(int i=0; i<userNumbers.length; i++){
-			int match = 0;
 			for(int j= 0; j<lottery.length; j++){
-				if(userNumbers[i][j] == lottery[j]){
+				for (int k = 0; k<lottery.length; k++){
+				if(userNumbers[i][j] == lottery[k]){
 					match++;
 					}
 				}
+		}
 			matches[i] = match;
 			}
 		}
@@ -112,6 +156,7 @@ public class GroupLottery{
 		} else if(sumWinnings >= 2000000){
 			sumWinnings = sumWinnings - SIX_NUM; //basically says if more than 2 million, substract 1 million
 		}*/
+		//decision taken to consider one lottery victory a win/exit condition
 	}
 
 	public void calculateAverage(double totalWinnings, int numberOfGames){

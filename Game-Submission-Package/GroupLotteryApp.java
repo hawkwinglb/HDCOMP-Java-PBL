@@ -1,3 +1,8 @@
+/**
+Lottery application programme for HDCOMP Software Dev Project
+@authors Liz Bourke, Alexia Falcoz, Laurine Rolland
+*/
+
 import java.util.*;
 
 public class GroupLotteryApp{
@@ -77,6 +82,8 @@ public static void main(String[] args){
 					}
 				}
 
+			//System.out.println(Arrays.toString(lottery.getLottery())); //testing line
+
 			lottery.setUserNumbers(userNumbers);
 			lottery.calculateMatches();
 
@@ -116,11 +123,11 @@ public static void main(String[] args){
 						System.out.println("That is not a valid number.\n");
 						}
 					else if(commit==2){
-						controlCounter=0;
+						controlCounter=1;
 
 						}
 					else{
-						control=1;
+						controlCounter=0;
 						gameCounter++; 							//increments gamecounter variable
 						} 										//this selection statement allows the user to exit from the whole-game while loop.
 	} //this selection statement checks whether the user has already reached a game-ending state.
@@ -131,7 +138,7 @@ public static void main(String[] args){
 	lottery.calculateAverage(totalWinnings, gameCounter);
 	aveWinnings = lottery.getAveWinnings();
 
-	}while(controlCounter != 0); 			 //whole-game while loop ends
+	}while(controlCounter != 1); 			 //whole-game while loop ends
 
 
 	//fetch history here
