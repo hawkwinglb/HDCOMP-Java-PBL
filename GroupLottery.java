@@ -82,7 +82,7 @@ public class GroupLottery{
 
 		for(int i=0; i<userNumbers.length; i++){ //iterate through both arrays of user numbers and lottery and compare the number
 			int match = 0; //reinitialise the match number to 0 for each line
-			for(int j=0; j<userNumbers[i].length, j++){ // iterate on columns of array of user numbers
+			for(int j=0; j<userNumbers[i].length; j++){ // iterate on columns of array of user numbers
 				for(int k= 0; k<lottery.length; k++){ // iterate on columns of array of lottery numbers
 					if(userNumbers[i][j] == lottery[k]){ //check if nums between user numbers and lottery are the same
 						match++; //add 1 to var if num are same
