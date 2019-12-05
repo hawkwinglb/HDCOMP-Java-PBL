@@ -124,7 +124,7 @@ public class GroupLotteryApp{
 			lottery.calculateAverage(totalWinnings, gameCounter);
 			aveWinnings = lottery.getAveWinnings();
 
-		}while(controlCounter != 0); //whole game do-while loop ends
+		}while(controlCounter != 0); //whole game do-while loop ends //this doesn't work if the user wins the lottery with one game
 
 		lotteryNumbers = lottery.getLottery();
 		System.out.print("The lottery numbers were: ");
