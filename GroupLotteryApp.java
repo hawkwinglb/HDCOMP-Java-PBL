@@ -51,19 +51,21 @@ public class GroupLotteryApp{
 
 
 			userNumbers = new int[noLines][6];
-			int control = userNumbers.length;
+			int control = userNumbers.length; //I wouldn't be able to explain this control.
 
 			for(int i =0; i<control; i++){
 				for(int j = 0; j < 6; j++){
-					System.out.println("Enter a whole number between 1 and 40:");
+					
+					System.out.println("Enter your lucky numbers - between 1 and 40:");
+					System.out.println("For number " + (j+1) + " on line " + (i+1));
 					int number = input.nextInt();
 
 					if(number>0 && number<41){
-
-						if( (number != userNumbers[i][0]) &&(number != userNumbers[i][1]) && (number != userNumbers[i][2]) && (number != userNumbers[i][3]) && (number != userNumbers[i][4]) && (number != userNumbers[i][5]) ){
-					userNumbers[i][j] = number; //this if statement validates the integer input
+						System.out.println("This is not a valid number! Enter a number between 1 and 40:");
+						if( (number != userNumbers[i][0]) && (number != userNumbers[i][1]) && (number != userNumbers[i][2]) && (number != userNumbers[i][3]) && (number != userNumbers[i][4]) && (number != userNumbers[i][5]) ){
+							userNumbers[i][j] = number; //this if statement validates the integer input and stores the user number in the array
 						} else {
-							System.out.println("That is not a valid number. Try again:");
+							System.out.println("You have already entered this number. Please only enter unique numbers.");
 							j=j-1;
 						}
 					}
