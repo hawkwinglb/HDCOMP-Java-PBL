@@ -61,13 +61,14 @@ public class GroupLotteryApp{
 					int number = input.nextInt();
 
 					if(number>0 && number<41){
-						System.out.println("This is not a valid number! Enter a number between 1 and 40:");
 						if( (number != userNumbers[i][0]) && (number != userNumbers[i][1]) && (number != userNumbers[i][2]) && (number != userNumbers[i][3]) && (number != userNumbers[i][4]) && (number != userNumbers[i][5]) ){
 							userNumbers[i][j] = number; //this if statement validates the integer input and stores the user number in the array
 						} else {
 							System.out.println("You have already entered this number. Please only enter unique numbers.");
 							j=j-1;
 						}
+					} else {
+						System.out.println("This is not a valid number! Enter a number between 1 and 40:");
 					}
 				}
 			}
