@@ -133,12 +133,12 @@ public class GroupLottery{
 		this.numberOfGames = numberOfGames; //taken from the App class
 
 		aveWinnings = (double)totalWinnings/numberOfGames; //casting here to double since it is a division
-		}
+	}
 
 	
 	public double getAveWinnings(){ //we could do this inside the calculateAverage in order to get less messy, up to you.
 		return aveWinnings;
-		}
+	}
 
 
 }
