@@ -52,11 +52,11 @@ public class GroupLotteryApp{
 
 			userNumbers = new int[noLines][6];
 			int control = userNumbers.length; //I wouldn't be able to explain this control.
-
+			
+			System.out.println("Enter your lucky numbers - between 1 and 40:");
+			
 			for(int i =0; i<control; i++){
 				for(int j = 0; j < 6; j++){
-					
-					System.out.println("Enter your lucky numbers - between 1 and 40:");
 					System.out.println("For number " + (j+1) + " on line " + (i+1));
 					int number = input.nextInt();
 
