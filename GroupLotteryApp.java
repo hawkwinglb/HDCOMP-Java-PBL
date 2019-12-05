@@ -99,11 +99,11 @@ public class GroupLotteryApp{
 			linesWon = lottery.getLinesWon();
 			totalWinnings = totalWinnings + winnings;
 
-			System.out.println("You won " + winnings + " in this game. \nYou won " + linesWon + " line(s).");
+			System.out.println("\nYou won on " + linesWon + " line(s) and you won " + winnings + " in this game.");
 			
-			gameHistory[gameCounter-1][0] = noLines;
-			gameHistory[gameCounter-1][1] = linesWon; //number of lines won (number of lines where 3 or more numbers matched) when we do the winnings calculation
-			gameHistory[gameCounter-1][2] = winnings;
+			gameHistory[gameCounter-1][0] = noLines; //number of lines played per game
+			gameHistory[gameCounter-1][1] = linesWon; //number of lines won per game(number of lines where 3 or more numbers matched) when we do the winnings calculation
+			gameHistory[gameCounter-1][2] = winnings; //winnings per game
 
 			if(controlCounter == 0){ //if user didn't win the lottery
 
@@ -130,16 +130,24 @@ public class GroupLotteryApp{
 
 		}while(controlCounter != 1); //whole game do-while loop ends //this wasn't working for 1 line, 1 game so I changed it
 
+		
+		//fetch history here
+		
+		System.out.println("Thanks for playing! This is the end of the lottery game.");
+		
 		lotteryNumbers = lottery.getLottery(); //print the lottery numbers
 		System.out.print("The lottery numbers were: ");
 		for(int i=0; i< lotteryNumbers.length;i++){
 			System.out.print(lotteryNumbers[i] + " ");
 		}
 		
-		//fetch history here
+		System.out.println("\nIn total, you played " + gameCounter + " game(s).");
 		
-		System.out.println("Thanks for playing! This is the end of the lottery game.");
-		System.out.println("In total, you played " + gameCounter + " game(s).");
+		for(int i= 0; i<gameHistory.length;i++){ //display the number of lines played per game, the number of lines won per game, the total winnings per game
+			if(gameHistory[i][0] != 0){
+			System.out.println("\nFor game number " + (i+1) + ", you played " + gameHistory[i][0] + " line(s).\nYou won on " + gameHistory[i][1] + " line(s). \nYou won " + gameHistory[i][2] + " euro.");
+			}
+		}
 		
 		/** if we do this we need to do the same for 'line' / 'lines' on 102
 		if(gameCounter>1){
@@ -150,17 +158,12 @@ public class GroupLotteryApp{
 
 
 		if(aveWinnings>0){
-			System.out.println("Your average winnings per game are " + aveWinnings + " euro.");
-			System.out.println("Your total winnings are " + totalWinnings + " euro.");
+			System.out.println("\nYour average winnings per game are " + aveWinnings + " euro.");
+			System.out.println("Your total winnings across all games are " + totalWinnings + " euro.");
 		}
 		else{
 			System.out.println("You won nothing in any game.");
 		}
 
-		for(int i= 0; i<gameHistory.length;i++){ //display the number of lines played per game, the number of lines won per game, the total winnings per game
-			if(gameHistory[i][0] != 0){
-			System.out.println("\nFor game number " + (i+1) + ", you played " + gameHistory[i][0] + " line(s).\nYou won on " + gameHistory[i][1] + " line(s). \nYou won " + gameHistory[i][2] + " euro.");
-			}
-		}
 	}
 }
