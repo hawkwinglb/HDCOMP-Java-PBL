@@ -37,8 +37,7 @@ public class GroupLotteryApp{
 			System.out.println("\nChoose how many lines you want to play in game number " + (gameCounter));
 			System.out.println("Please enter number of lines (between 1 and 3): ");
 
-
-			int putter=0;
+			int putter=0; //Sorry Liz, I don't understand this loop and validation.
 			do{
 				noLines = input.nextInt();
 				if (noLines >=1 && noLines <=3){
@@ -48,15 +47,24 @@ public class GroupLotteryApp{
 				System.out.println("That is not a valid number. Try again.");
 				}
 			} while(putter!=1);
-
+			
+			/** instead I would do:
+			
+			noLines = input.nextInt();
+			while(noLines<1 || noLines>3){
+				System.out.println("This is not a valid number of lines. Please enter how many lines you want to play in game number " + (gameCounter));
+				noLines = input.nextInt();
+			}
+			
+			*/
 
 			userNumbers = new int[noLines][6];
-			int control = userNumbers.length; //I wouldn't be able to explain this control.
+			//int control = userNumbers.length; //I am not sure to understand this control?
 			
 			System.out.println("Enter your lucky numbers - between 1 and 40:");
 			
-			for(int i =0; i<control; i++){
-				for(int j = 0; j < 6; j++){
+			for(int i =0; i<userNumbers.length; i++){
+				for(int j = 0; j < userNumbers[i].length; j++){
 					System.out.println("For number " + (j+1) + " on line " + (i+1));
 					int number = input.nextInt();
 
@@ -105,7 +113,7 @@ public class GroupLotteryApp{
 				} else if(commit==2){
 					controlCounter=0;
 				} else {
-					control=1;
+					//control=1; not sure to what control this refers to? this doesn't change anything to the compilation or output
 					gameCounter++; 	//increments gamecounter variable
 				} //this selection statement allows the user to exit from the whole-game while loop.
 			} //this selection statement checks whether the user has already reached a game-ending state.
