@@ -7,18 +7,18 @@ public class GroupLottery{
 	private int[][] userNumbers;
 
 	private int[] matches;
-	private double winnings;
-	private double lineWinnings;
+	private int winnings;
+	private int lineWinnings;
 	private int linesWon;
-	private double totalWinnings;
+	private int totalWinnings;
 	private double aveWinnings;
 	private int numberOfGames;
 
 
-	private final double MATCH3 = 100;
-	private final double MATCH4 = 300;
-	private final double MATCH5 = 1500;
-	private final double MATCH6 = 1000000;//@alexia==> adding here the const of six matches for an amount of money won for the entire lottery
+	private final int MATCH3 = 100;
+	private final int MATCH4 = 300;
+	private final int MATCH5 = 1500;
+	private final int MATCH6 = 1000000;//@alexia==> adding here the const of six matches for an amount of money won for the entire lottery
 	private final String MATCH_6 = "You won the lottery! Stop now.";
 
 
@@ -60,7 +60,7 @@ public class GroupLottery{
 		}
 
 
-	public double getWinnings(){
+	public int getWinnings(){
 		return winnings;
 		}
 
@@ -114,11 +114,11 @@ public class GroupLottery{
 		}*/
 	}
 
-	public void calculateAverage(double totalWinnings, int numberOfGames){
+	public void calculateAverage(int totalWinnings, int numberOfGames){
 		this.totalWinnings = totalWinnings;
 		this.numberOfGames = numberOfGames;
 
-		aveWinnings = totalWinnings/numberOfGames;
+		aveWinnings = (double)totalWinnings/numberOfGames; //casting here to double
 		}
 
 	public double getAveWinnings(){
