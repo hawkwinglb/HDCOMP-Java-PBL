@@ -16,7 +16,7 @@ public class GroupLotteryApp{
 		
 		double aveWinnings; //create a var to get the average winnings of all games back from the inst class
 
-		double winnings; //create a var to get the winnings per one game back from the inst class
+		int winnings; //create a var to get the winnings per one game back from the inst class
 		int linesWon; //create a var to get the number of lines won per one game back from the inst class
 
 		final int MAX_GAMES = 100; //we decided to have a sufficiently big array to store each game history on one row, there is one hundred rows in this array, so the user can play 100 times
