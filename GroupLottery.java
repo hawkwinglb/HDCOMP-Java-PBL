@@ -2,97 +2,111 @@ import java.util.*;
 
 public class GroupLottery{
 
-	private int[] lottery;
+	private int[] lottery; //array of lottery numbers
 
-	private int[][] userNumbers;
+	private int[][] userNumbers; //array of user numbers
 
-	private int[] matches;
-	private int winnings;
-	private int lineWinnings;
-	private int linesWon;
-	private int totalWinnings;
-	private double aveWinnings;
-	private int numberOfGames;
-
-
-	private final int MATCH3 = 100;
-	private final int MATCH4 = 300;
-	private final int MATCH5 = 1500;
-	private final int MATCH6 = 1000000;//@alexia==> adding here the const of six matches for an amount of money won for the entire lottery
-	private final String MATCH_6 = "You won the lottery! Stop now.";
-
+	private int[] matches; //array of matches per line, array is as long as the number of rows in the array of the user numbers (e.g. if user chose 3 lines, array of matches will be [0,0,0], 2 lines [0,0]...
+	
+	private int winnings; //sum of winnings for one game
+	
+	//private int lineWinnings, we don't need this one as it is never returned in the app class, can be local to the method calculateWinnings
+	
+	private int linesWon; //sum of lines won for one game
+	
+	private int totalWinnings; //sum of all the games winnings
+	
+	private double aveWinnings; //average of all the winnings for all the games
+	
+	private int numberOfGames; //number of games the user played
 
 
-	public GroupLottery(){
-		lottery = new int[6];
-		for(int i=0; i<6; i=i+1){
-			Random myRandom = new Random();
-			int ranNum = myRandom.nextInt(6)+1;
+	private final int MATCH3 = 100; //sum won for 3 matches
+	private final int MATCH4 = 300; //sum won for 4 matches
+	private final int MATCH5 = 1500; //sum won for 5 matches
+	private final int MATCH6 = 1000000; //sum won for 6 matches - entire lottery! :-)
+	private final String MATCH_6 = "Congratulations, you won the lottery! :-D ";
 
-			if( (ranNum == lottery[0]) || (ranNum == lottery[1]) || (ranNum == lottery[2]) || (ranNum == lottery[3]) || (ranNum == lottery[4]) || (ranNum == lottery[5]) ){
-				i= i-1;
+
+
+	public GroupLottery(){ //generate the array of lottery (random) numbers
+		lottery = new int[6]; //initialize a new array of six values
+		for(int i=0; i<6; i=i+1){ //loop through the array
+			Random myRandom = new Random(); //generate one random number
+			int ranNum = myRandom.nextInt(6)+1; //specify the range in which the random numbers will be picked and store a first number within the range inside the variable ranNum
+
+			if( (ranNum == lottery[0]) || (ranNum == lottery[1]) || (ranNum == lottery[2]) || (ranNum == lottery[3]) || (ranNum == lottery[4]) || (ranNum == lottery[5]) ){ //check uniqueness of the random number picked, compare variable ranNum to each of the value of the array, it will compare to 0 the first time the array is initialized
+				i= i-1; //if not unique so if the number is already in the array, index go back of one and a new random number will be picked
 				}
-			else{
-				lottery[i] = ranNum;
-				}
+			else {
+				lottery[i] = ranNum; //if unique, the ranNum value will be stored inside the lottery array
 			}
 		}
+	}
 
 
-	public void setUserNumbers(int userNumbers[][]){
+	public void setUserNumbers(int userNumbers[][]){ //take the user numbers from the app class so they can be compared to the lottery numbers
 		this.userNumbers=userNumbers;
-		}
+	}
+	
+	
 
-	public int[][] getUserNumbers(){
-		return userNumbers;
-		}
-
-	public int[] getLottery(){
+	public int[] getLottery(){ 
 		return lottery;
-		}
+	}
 
-	public void setMatches(int matches[]){
+	/** do we need this? they are only recorded in the instantiable class
+	public void setMatches(int matches[]){ 
 		this.matches = matches;
-		}
+	}
+	*/
+	
+	/** Do we need this? They already exist in the app class
+	public int[][] getUserNumbers(){ 
+		return userNumbers;
+	}*/
 
-	public int[] getMatches(){
+	public int[] getMatches(){ //get the array of matches between user numbers and per lines
 		return matches;
-		}
+	}
 
 
-	public int getWinnings(){
+	public int getWinnings(){ 
 		return winnings;
-		}
+	}
 
 
-	public void calculateMatches(){
+	public void calculateMatches(){ //main computation here, compare the array of user numbers and the array of lottery numbers
 
-		matches = new int[userNumbers.length];
+		matches = new int[userNumbers.length]; //create a new array of the length equivalent to the number of lines the user chose for the game
 
-		for(int i=0; i<userNumbers.length; i++){
-			int match = 0;
-			for(int j= 0; j<lottery.length; j++){
-				if(userNumbers[i][j] == lottery[j]){
-					match++;
+		for(int i=0; i<userNumbers.length; i++){ //iterate through both arrays of user numbers and lottery and compare the number
+			int match = 0; //reinitialise the match number to 0 for each line
+			for(int j=0; j<userNumbers[i].length, j++){ // iterate on columns of array of user numbers
+				for(int k= 0; k<lottery.length; k++){ // iterate on columns of array of lottery numbers
+					if(userNumbers[i][j] == lottery[k]){ //check if nums between user numbers and lottery are the same
+						match++; //add 1 to var if num are same
 					}
 				}
-			matches[i] = match;
+				matches[i] = match; // store number of matches per line, with line number being the index
 			}
 		}
-
-	public int getLinesWon(){
+	}
+	
+	
+	public int getLinesWon(){ //get the number of lines won for one game
 		return linesWon;
-		}
+	}
 
 	public void calculateWinnings(){
 		//@alexia==> adding the method to calculate the winnings, @Laurine feel free to change anything here :-)
 
 		winnings = 0; //initialize the sum of the winnings at 0
-		linesWon=0;
+		linesWon=0; //initialize the sum of linesWon at 0
 		for(int i=0; i<matches.length; i++){ //loop into the array of matches (above) - each line represents one index in the array - to add to the entire sum of winnings for 1 game
 			if(matches[i] == 6){
 				lineWinnings = MATCH6; //store 1 000 000 into lineWinnings
-				linesWon +=1;
+				linesWon +=1; //add 1
 			} else if(matches[i] == 5){
 				lineWinnings = MATCH5; // store 1 500 into lineWinnings
 				linesWon +=1;
