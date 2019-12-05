@@ -61,7 +61,7 @@ public class GroupLottery{
 	}
 	*/
 	
-	/** Do we need this? They already exist in the app class
+	/** Do we need this? They are already stored/existing in the app class
 	public int[][] getUserNumbers(){ 
 		return userNumbers;
 	}*/
