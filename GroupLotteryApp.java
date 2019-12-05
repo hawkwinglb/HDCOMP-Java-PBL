@@ -105,28 +105,32 @@ public class GroupLotteryApp{
 			gameHistory[gameCounter-1][1] = linesWon; //number of lines won (number of lines where 3 or more numbers matched) when we do the winnings calculation
 			gameHistory[gameCounter-1][2] = winnings;
 
-			if(controlCounter != 1){
-				System.out.println("Do you want to play another game?\n Press 1 to play again. Press 2 to exit. \n Do not press any other keys.\n");
-				int commit = input.nextInt();
-				if(commit<1 || commit>2){
-					System.out.println("That is not a valid number.\n");
-				} else if(commit==2){
-					controlCounter=0;
-				} else {
-					//control=1; not sure to what control this refers to? this doesn't change anything to the compilation or output
-					gameCounter++; 	//increments gamecounter variable
+			if(controlCounter == 0){ //if user didn't win the lottery
+
+				System.out.println("Do you want to play another game?\n Press 1 to play again. Press 2 to exit.\n");
+			
+				int commit = input.nextInt(); //we check what the user wants to do
+				
+				while (commit<1 || commit>2){
+					System.out.println("That is not a valid number.\n"); //1 or 2 only
+					commit = input.nextInt();
+				}
+
+				if( commit == 1){ //user wants to play again
+					gameCounter++; //increments gamecounter variable
+				} else { // user doesn't want to play again
+					controlCounter = 1; //increment the control counter and closes the game loop
 				} //this selection statement allows the user to exit from the whole-game while loop.
 			} //this selection statement checks whether the user has already reached a game-ending state.
-
 
 
 
 			lottery.calculateAverage(totalWinnings, gameCounter);
 			aveWinnings = lottery.getAveWinnings();
 
-		}while(controlCounter != 0); //whole game do-while loop ends //this doesn't work if the user wins the lottery with one game
+		}while(controlCounter != 1); //whole game do-while loop ends //this wasn't working for 1 line, 1 game so I changed it
 
-		lotteryNumbers = lottery.getLottery();
+		lotteryNumbers = lottery.getLottery(); //print the lottery numbers
 		System.out.print("The lottery numbers were: ");
 		for(int i=0; i< lotteryNumbers.length;i++){
 			System.out.print(lotteryNumbers[i] + " ");
