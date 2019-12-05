@@ -52,7 +52,7 @@ public static void main(String[] args){
 			putter = 1;
 			}
 		else{
-			System.out.println("That is not a valid number. Try again.");
+			System.out.println("That is not a valid number. Try again with a number between 1 and 3.");
 		}
 	} while(putter!=1);
 
@@ -74,12 +74,16 @@ public static void main(String[] args){
 							}
 						//this if statement validates the integer input
 							else{
-							System.out.println("That is not a valid number. Try again:");
+							System.out.println("That is not a valid number. You entered the same value more than once. Try again:");
 							j=j-1;
 							}
 						}
-
+						else{
+							System.out.println("That is not a valid number. Try again:");
+							j=j-1;
+							}
 					}
+					System.out.println("Line: " + (i+1) + " ends." );
 				}
 
 			//System.out.println(Arrays.toString(lottery.getLottery())); //testing line
@@ -117,19 +121,24 @@ public static void main(String[] args){
 	if(controlCounter != 1){
 		System.out.println("Do you want to play another game?\n Press 1 to play again. Press 2 to exit. \n Do not press any other keys.\n");
 
+		int ender=0;
+		do{
 			int commit = input.nextInt();
 
 					if(commit<1 || commit>2){
-						System.out.println("That is not a valid number.\n");
+						System.out.println("That is not a valid number.Please enter 1 to play again. Please enter 2 to exit.\n");
 						}
 					else if(commit==2){
 						controlCounter=1;
+						ender=1;
 
 						}
 					else{
 						controlCounter=0;
 						gameCounter++; 							//increments gamecounter variable
-						} 										//this selection statement allows the user to exit from the whole-game while loop.
+						ender=1;
+						} 									//this selection statement allows the user to exit from the whole-game while loop.
+			}while(ender!=1);
 	} //this selection statement checks whether the user has already reached a game-ending state.
 
 
