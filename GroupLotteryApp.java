@@ -111,7 +111,7 @@ public class GroupLotteryApp{
 			
 				int commit = input.nextInt(); //we check what the user wants to do
 				
-				while (commit<1 || commit>2){
+				while (commit<1 || commit>2){ //had to create a while so that the user has to choose between 1 or 2, an if statement only runs once, whereas a while will always run while condition is not met
 					System.out.println("That is not a valid number.\n"); //1 or 2 only
 					commit = input.nextInt();
 				}
@@ -141,7 +141,7 @@ public class GroupLotteryApp{
 		System.out.println("Thanks for playing! This is the end of the lottery game.");
 		System.out.println("In total, you played " + gameCounter + " game(s).");
 		
-		/** if we do this we need to do the same for 'line' / 'lines' on 94
+		/** if we do this we need to do the same for 'line' / 'lines' on 102
 		if(gameCounter>1){
 			 //for correct grammar when displaying the number of games.
 		} else {
