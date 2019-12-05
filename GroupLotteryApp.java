@@ -7,6 +7,7 @@ public class GroupLotteryApp{
 		Scanner input = new Scanner(System.in); //get the user input
 
 		int[][] userNumbers; //create an array to store the user numbers
+		int[] lotteryNumbers; //to get the lottery numbers from the inst class
 
 		int[] matches; // create an array of matches (coming from the computation in the inst class)
 
@@ -28,12 +29,11 @@ public class GroupLotteryApp{
 
 		System.out.println("You are playing a lottery game.\nFor each iteration of the game, six random numbers between 1 and 40 (inclusive) are generated. \nTo win the lottery, you must guess those numbers. \nIn each interation of the game, you may play up to three lines of six numbers. \nYou may continue playing the lottery game until you win the lottery(match six numbers) or until you choose to stop. \nPrize money is attached to matching: \n3 numbers: 100 euro\n4 numbers: 300 euro\n5 numbers: 1500 euro\n6 numbers: you win the entire lottery of 1 000 000 euro.\nAt the end of all game iterations, the average prize money won per game will be calculated and displayed.");
 		
+		
+		GroupLottery lottery = new GroupLottery(); //initialize the new GroupLottery Object
 		gameCounter = 1;
 
 		do{ //
-
-			GroupLottery lottery = new GroupLottery(); //initialize the new GroupLottery Object
-
 			System.out.println("\nChoose how many lines you want to play in game number " + (gameCounter));
 			System.out.println("Please enter number of lines (between 1 and 3): ");
 
@@ -83,7 +83,6 @@ public class GroupLotteryApp{
 				if(matches[i] == 6){
 					System.out.println("You won the whole lottery. You can play again soon, but we're going to stop you being greedy.");
 					controlCounter = 1; //after this do-while loop completes, exit the game.
-
 				}
 			}
 
@@ -93,9 +92,7 @@ public class GroupLotteryApp{
 			totalWinnings = totalWinnings + winnings;
 
 			System.out.println("You won " + winnings + " in this game. \nYou won " + linesWon + "lines.");
-
-			int integerWinnings = (int)winnings;
-
+			
 			gameHistory[gameCounter-1][0] = noLines;
 			gameHistory[gameCounter-1][1] = linesWon; //number of lines won (number of lines where 3 or more numbers matched) when we do the winnings calculation
 			gameHistory[gameCounter-1][2] = winnings;
@@ -121,7 +118,12 @@ public class GroupLotteryApp{
 
 		}while(controlCounter != 0); //whole game do-while loop ends
 
-
+		lotteryNumbers = lottery.getLottery();
+		System.out.print("The lottery numbers were: ");
+		for(int i=0; i< lotteryNumbers.length;i++){
+			System.out.print(lotteryNumbers[i] + " ");
+		}
+		
 		//fetch history here
 		if(gameCounter>1){
 			System.out.println("You played " + gameCounter + " games."); //for correct grammar when displaying the number of games.
