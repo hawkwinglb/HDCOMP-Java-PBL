@@ -91,7 +91,7 @@ public class GroupLotteryApp{
 			linesWon = lottery.getLinesWon();
 			totalWinnings = totalWinnings + winnings;
 
-			System.out.println("You won " + winnings + " in this game. \nYou won " + linesWon + "lines.");
+			System.out.println("You won " + winnings + " in this game. \nYou won " + linesWon + " line(s).");
 			
 			gameHistory[gameCounter-1][0] = noLines;
 			gameHistory[gameCounter-1][1] = linesWon; //number of lines won (number of lines where 3 or more numbers matched) when we do the winnings calculation
@@ -125,11 +125,16 @@ public class GroupLotteryApp{
 		}
 		
 		//fetch history here
+		
+		System.out.println("Thanks for playing! This is the end of the lottery game.");
+		System.out.println("In total, you played " + gameCounter + " game(s).");
+		
+		/** if we do this we need to do the same for 'line' / 'lines' on 94
 		if(gameCounter>1){
-			System.out.println("You played " + gameCounter + " games."); //for correct grammar when displaying the number of games.
+			 //for correct grammar when displaying the number of games.
 		} else {
 			System.out.println("You played " + gameCounter + " game.");
-		}
+		}*/
 
 
 		if(aveWinnings>0){
