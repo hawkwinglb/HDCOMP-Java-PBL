@@ -30,7 +30,7 @@ public class GroupLotteryApp{
 		System.out.println("You are playing a lottery game.\nFor each iteration of the game, six random numbers between 1 and 40 (inclusive) are generated. \nTo win the lottery, you must guess those numbers. \nIn each interation of the game, you may play up to three lines of six numbers. \nYou may continue playing the lottery game until you win the lottery(match six numbers) or until you choose to stop. \nPrize money is attached to matching: \n3 numbers: 100 euro\n4 numbers: 300 euro\n5 numbers: 1500 euro\n6 numbers: you win the entire lottery of 1 000 000 euro.\nAt the end of all game iterations, the average prize money won per game will be calculated and displayed.");
 		
 		
-		GroupLottery lottery = new GroupLottery(); //initialize the new GroupLottery Object
+		GroupLottery lottery = new GroupLottery(); //initialize the new GroupLottery Object and initialize the lottery numbers from the constructor
 		gameCounter = 1;
 
 		do{ //
