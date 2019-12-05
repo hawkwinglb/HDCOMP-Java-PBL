@@ -68,7 +68,7 @@ public class GroupLotteryApp{
 							j=j-1;
 						}
 					} else {
-						System.out.println("This is not a valid number! Enter a number between 1 and 40:");
+						System.out.println("This is not a valid number! Please enter a number between 1 and 40.");
 					}
 				}
 			}
