@@ -10,7 +10,7 @@ public class GroupLottery{
 	
 	private int winnings; //sum of winnings for one game
 	
-	//private int lineWinnings, we don't need this one as it is never returned in the app class, can be local to the method calculateWinnings
+	private int lineWinnings; //we don't need this one as it is never returned in the app class, can be local to the method calculateWinnings, unless you want to have them printed at the end of one game
 	
 	private int linesWon; //sum of lines won for one game
 	
