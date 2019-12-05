@@ -25,7 +25,7 @@ public class GroupLottery{
 	private final int MATCH4 = 300; //sum won for 4 matches
 	private final int MATCH5 = 1500; //sum won for 5 matches
 	private final int MATCH6 = 1000000; //sum won for 6 matches - entire lottery! :-)
-	private final String MATCH_6 = "Congratulations, you won the lottery! :-D ";
+	private final String MATCH_6 = "Congratulations, you won the lottery! :-D "; //user won the lottery :-)
 
 
 
@@ -51,7 +51,7 @@ public class GroupLottery{
 	
 	
 
-	public int[] getLottery(){ 
+	public int[] getLottery(){ //get the lottery numbers back to the app class so they can be displayed to the user
 		return lottery;
 	}
 
@@ -66,7 +66,7 @@ public class GroupLottery{
 		return userNumbers;
 	}*/
 
-	public int[] getMatches(){ //get the array of matches between user numbers and per lines
+	public int[] getMatches(){ //get the array of matches between user numbers and lottery, number of matches per lines
 		return matches;
 	}
 
@@ -128,14 +128,15 @@ public class GroupLottery{
 		}*/
 	}
 
-	public void calculateAverage(int totalWinnings, int numberOfGames){
-		this.totalWinnings = totalWinnings;
-		this.numberOfGames = numberOfGames;
+	public void calculateAverage(int totalWinnings, int numberOfGames){ //calculate the average of winnings of all the games
+		this.totalWinnings = totalWinnings; //taken from the App class
+		this.numberOfGames = numberOfGames; //taken from the App class
 
-		aveWinnings = (double)totalWinnings/numberOfGames; //casting here to double
+		aveWinnings = (double)totalWinnings/numberOfGames; //casting here to double since it is a division
 		}
 
-	public double getAveWinnings(){
+	
+	public double getAveWinnings(){ //we could do this inside the calculateAverage in order to get less messy, up to you.
 		return aveWinnings;
 		}
 
