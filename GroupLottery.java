@@ -121,17 +121,11 @@ public class GroupLottery{
 		}
 	}
 
-	public void calculateAverage(int totalWinnings, int numberOfGames){ //calculate the average of winnings of all the games
+	public double calculateAverage(int totalWinnings, int numberOfGames){ //calculate and return the average of winnings of all the games
 		this.totalWinnings = totalWinnings; //taken from the App class
 		this.numberOfGames = numberOfGames; //taken from the App class
 
-		aveWinnings = (double)totalWinnings/numberOfGames; //casting here to double since it is a division
+		return aveWinnings = (double)totalWinnings/numberOfGames; //casting here to double since it is a division
 	}
-
-	
-	public double getAveWinnings(){ //we could do this inside the calculateAverage in order to get less messy, up to you.
-		return aveWinnings;
-	}
-
 
 }
