@@ -119,13 +119,6 @@ public class GroupLottery{
 			}
 			winnings = winnings + lineWinnings; //add all line winnings together so these are the winnings for one game
 		}
-		//still need to discuss the below part of the method. This part allows to say that the lottery (1 million euros) is only won once per game
-		/**
-		if(winnings >= 3000000){ //however, user can only win the lottery once, so this will substract the winnings at only one time lottery win (can only win 1 million)
-			winnings = winnings - (2 * SIX_NUM); //basically says if more than 3 million, substract 2 million
-		} else if(sumWinnings >= 2000000){
-			sumWinnings = sumWinnings - SIX_NUM; //basically says if more than 2 million, substract 1 million
-		}*/
 	}
 
 	public void calculateAverage(int totalWinnings, int numberOfGames){ //calculate the average of winnings of all the games
