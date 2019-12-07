@@ -42,65 +42,65 @@ public class GroupLotteryApp{
 			noLines = input.nextInt(); // take the input for the number of lines
 			while(noLines<1 || noLines>3){ // data validation for number of lines
 				System.out.print("That is not a valid number! Please enter number of lines between 1 and 3: ");
-				noLines = input.nextInt();
+				noLines = input.nextInt(); 
 			}
 
 			userNumbers = new int[noLines][6]; // initialize userNumbers array with the noLines being the number of rows in the array
 
 			System.out.println("\nThank you! Now, please enter your lucky numbers - between 1 and 40:");
 
-			for(int i =0; i<userNumbers.length; i++){
+			for(int i =0; i<userNumbers.length; i++){ //iterating through the array userNumber at row  index
 				System.out.println("For line " + (i+1));
-				for(int j = 0; j < userNumbers[i].length; j++){
+				for(int j = 0; j < userNumbers[i].length; j++){ //iterating through the array userNumber at column index
 					System.out.print("For number " + (j+1)+ ": ");
-					int number = input.nextInt();
+					int number = input.nextInt(); // take the user input for numbers
 
-					if(number>0 && number<41){
+					if(number>0 && number<41){ // check if number is in the right range (0,40) inclusive
 						if( (number != userNumbers[i][0]) && (number != userNumbers[i][1]) && (number != userNumbers[i][2]) && (number != userNumbers[i][3]) && (number != userNumbers[i][4]) && (number != userNumbers[i][5]) ){
-							userNumbers[i][j] = number; //this if statement validates the integer input and stores the user number in the array
+							userNumbers[i][j] = number; //this if statement validates the integer input and stores the user number in the array if number is not already in the array
 						} else {
-							System.out.println("You have already entered this number! Please only enter unique numbers.");
-							j=j-1;
+							System.out.println("You have already entered this number! Please only enter unique numbers."); //meaningful messaging if number is already entered
+							j=j-1; //goes back of 1 index if number is already present so that the user number is stored at the correct index in the array
 						}
 					} else {
-						System.out.println("That is not a valid number! Please enter a number between 1 and 40.");
-						j=j-1;
+						System.out.println("That is not a valid number! Please enter a number between 1 and 40."); //meaningful messaging if number is out of the range
+						j=j-1; //goes back of 1 index if number is not in range so that the user number is stored at the correct index in the array
 					}
 				}
 				System.out.println();
 			}
 
-			lottery.setUserNumbers(userNumbers);
-			lottery.calculateMatches();
+			lottery.setUserNumbers(userNumbers); //send the userNumber array to instantiable class
+			lottery.calculateMatches(); //calculate the matches 
 
-			matches = lottery.getMatches();
-
-			int lotteryWon = 0;
+			matches = lottery.getMatches(); //get the number of matches
+			
+			int lotteryWon = 0; //initialise the lotteryWon variable to 0, so that sum is not overwritten while iterating through the matches array
 			for(int i = 0; i < matches.length; i++){
 				System.out.println();
 				System.out.println("You guessed correctly " + matches[i] + " number(s) on line " + (i+1) + ".");
 				if(matches[i] == 6){
 					lotteryWon++;
-					if(lotteryWon == 1){
+					if(lotteryWon == 1){ //user won the lottery :-D
 						System.out.println("You won the whole lottery!!! Congratulations! :-D \nYou can play again soon, but we're going to stop you being greedy. ;-)");
-					} else if(lotteryWon > 1){
+					} else if(lotteryWon > 1){ //user won the lottery more than once and cannot as per our decision
 						System.out.println("You guessed all numbers again! But you already won the lottery :) ");
-						}
-					controlCounter = 1; //after this do-while loop completes, exit the game.
+					}
+					controlCounter = 1; //after this do-while loop completes, exit the game as decided that the lottery game stops if lottery is won
 				}
 
 			}
 
-			lottery.calculateWinnings();
-			winnings = lottery.getWinnings();
-			linesWon = lottery.getLinesWon();
-			totalWinnings = totalWinnings + winnings;
+			lottery.calculateWinnings(); //calculate the winnings won for the game
+			winnings = lottery.getWinnings(); //get the winnings won for the game
+			linesWon = lottery.getLinesWon(); //get the number of lines won for the game
+			totalWinnings = totalWinnings + winnings; //add the winnings of this game to the other games played previously if any
 
 			System.out.println("\nYou won on " + linesWon + " line(s) and you won " + winnings + " euro in this game.");
-
-			gameHistory[gameCounter-1][0] = noLines; //number of lines played per game
-			gameHistory[gameCounter-1][1] = linesWon; //number of lines won per game(number of lines where 3 or more numbers matched) when we do the winnings calculation
-			gameHistory[gameCounter-1][2] = winnings; //winnings per game
+			//game history here
+			gameHistory[gameCounter-1][0] = noLines; //store the number of lines played per game in the history array
+			gameHistory[gameCounter-1][1] = linesWon; //store the number of lines won per game in the history array (number of lines where 3 or more numbers matched)
+			gameHistory[gameCounter-1][2] = winnings; //store the winnings per game in the history array
 
 			if(controlCounter == 0){ //if user didn't win the lottery
 
@@ -121,8 +121,8 @@ public class GroupLotteryApp{
 			} //this selection statement checks whether the user has already reached a game-ending state.
 
 
-			lottery.calculateAverage(totalWinnings, gameCounter);
-			aveWinnings = lottery.getAveWinnings();
+			lottery.calculateAverage(totalWinnings, gameCounter); //calculate the average of winning across all games
+			aveWinnings = lottery.getAveWinnings(); //get the average of winning across all games
 
 		}while(controlCounter != 1); //whole game do-while loop ends
 
@@ -131,7 +131,7 @@ public class GroupLotteryApp{
 		System.out.println("\nThanks for playing! This is the end of the lottery game.");
 
 		lotteryNumbers = lottery.getLottery(); //print the lottery numbers
-		System.out.print("The lottery numbers were: ");
+		System.out.print("The lottery numbers were: "); 
 		for(int i=0; i< lotteryNumbers.length;i++){
 			System.out.print(lotteryNumbers[i] + " ");
 		}
