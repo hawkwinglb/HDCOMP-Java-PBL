@@ -7,10 +7,12 @@ public class GroupLottery{
 	private int[][] userNumbers; //array of user numbers
 
 	private int[] matches; //array of matches per line, array is as long as the number of rows in the array of the user numbers (e.g. if user chose 3 lines, array of matches will be [0,0,0], 2 lines [0,0]...
+
+	private int lineWinnings; //create and initialise a variable to temporarily calculate the winnings per line in one game
+
+	private int linesWon; //sum of lines won for one game
 	
 	private int winnings; //sum of winnings for one game
-		
-	private int linesWon; //sum of lines won for one game
 	
 	private int totalWinnings; //sum of all the games winnings
 	
@@ -77,7 +79,6 @@ public class GroupLottery{
 	public void calculateWinnings(){
 		//@alexia==> adding the method to calculate the winnings, @Laurine feel free to change anything here :-)
 		
-		int lineWinnings; //create a local variable to temporarily store the winnings per line in one game
 		winnings = 0; //initialize the sum of the winnings at 0
 		linesWon=0; //initialize the sum of linesWon at 0
 		for(int i=0; i<matches.length; i++){ //loop into the array of matches (above) - each line represents one index in the array - to add to the entire sum of winnings for 1 game
