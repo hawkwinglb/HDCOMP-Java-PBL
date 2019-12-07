@@ -35,20 +35,20 @@ public class GroupLotteryApp{
 
 		do{ //
 			System.out.println("\nChoose how many lines you want to play in game number " + (gameCounter));
-			System.out.println("Please enter number of lines (between 1 and 3): ");
+			System.out.print("Please enter number of lines (between 1 and 3): ");
 
-			int putter=0; //Sorry Liz, I don't understand this loop and validation.
+			int putter=0;
 			do{
 				noLines = input.nextInt();
 				if (noLines >=1 && noLines <=3){
 				putter = 1;
 				}
 				else{
-				System.out.println("That is not a valid number. Try again.");
+				System.out.print("That is not a valid number! Please enter number of lines between 1 and 3: ");
 				}
 			} while(putter!=1);
 			
-			/** instead I would do:
+			/** could we do:
 			
 			noLines = input.nextInt();
 			while(noLines<1 || noLines>3){
@@ -61,24 +61,26 @@ public class GroupLotteryApp{
 			userNumbers = new int[noLines][6];
 			//int control = userNumbers.length; //I am not sure to understand this control?
 			
-			System.out.println("Enter your lucky numbers - between 1 and 40:");
+			System.out.println("\nThank you! Now, please enter your lucky numbers - between 1 and 40:");
 			
 			for(int i =0; i<userNumbers.length; i++){
 				for(int j = 0; j < userNumbers[i].length; j++){
-					System.out.println("For number " + (j+1) + " on line " + (i+1));
+					System.out.print("For number " + (j+1) + " on line " + (i+1) + ": ");
 					int number = input.nextInt();
 
 					if(number>0 && number<41){
 						if( (number != userNumbers[i][0]) && (number != userNumbers[i][1]) && (number != userNumbers[i][2]) && (number != userNumbers[i][3]) && (number != userNumbers[i][4]) && (number != userNumbers[i][5]) ){
 							userNumbers[i][j] = number; //this if statement validates the integer input and stores the user number in the array
 						} else {
-							System.out.println("You have already entered this number. Please only enter unique numbers.");
+							System.out.println("You have already entered this number! Please only enter unique numbers.");
 							j=j-1;
 						}
 					} else {
-						System.out.println("This is not a valid number! Please enter a number between 1 and 40.");
+						System.out.println("That is not a valid number! Please enter a number between 1 and 40.");
+						j=j-1;
 					}
 				}
+				System.out.println();	
 			}
 
 			lottery.setUserNumbers(userNumbers);
@@ -87,9 +89,9 @@ public class GroupLotteryApp{
 			matches = lottery.getMatches();
 
 			for(int i = 0; i < matches.length; i++){
-				System.out.println("You matched " + matches[i] + " numbers on line " + (i+1) + ".");
+				System.out.println("You guessed correctly " + matches[i] + " numbers on line " + (i+1) + ".");
 				if(matches[i] == 6){
-					System.out.println("You won the whole lottery. You can play again soon, but we're going to stop you being greedy.");
+					System.out.println("You won the whole lottery!!! Congratulations! :-D \nYou can play again soon, but we're going to stop you being greedy. ;-)");
 					controlCounter = 1; //after this do-while loop completes, exit the game.
 				}
 			}
@@ -99,7 +101,7 @@ public class GroupLotteryApp{
 			linesWon = lottery.getLinesWon();
 			totalWinnings = totalWinnings + winnings;
 
-			System.out.println("\nYou won on " + linesWon + " line(s) and you won " + winnings + " in this game.");
+			System.out.println("\nYou won on " + linesWon + " line(s) and you won " + winnings + " euro in this game.");
 			
 			gameHistory[gameCounter-1][0] = noLines; //number of lines played per game
 			gameHistory[gameCounter-1][1] = linesWon; //number of lines won per game(number of lines where 3 or more numbers matched) when we do the winnings calculation
@@ -107,12 +109,12 @@ public class GroupLotteryApp{
 
 			if(controlCounter == 0){ //if user didn't win the lottery
 
-				System.out.println("Do you want to play another game?\n Press 1 to play again. Press 2 to exit.\n");
+				System.out.print("\nDo you want to play another game?\nPress 1 to play again or press 2 to exit: ");
 			
 				int commit = input.nextInt(); //we check what the user wants to do
 				
 				while (commit<1 || commit>2){ //had to create a while so that the user has to choose between 1 or 2, an if statement only runs once, whereas a while will always run while condition is not met
-					System.out.println("That is not a valid number.\n"); //1 or 2 only
+					System.out.print("That is not a valid number! Please press 1 to play again or press 2 to exit: "); //1 or 2 only
 					commit = input.nextInt();
 				}
 
@@ -124,16 +126,14 @@ public class GroupLotteryApp{
 			} //this selection statement checks whether the user has already reached a game-ending state.
 
 
-
 			lottery.calculateAverage(totalWinnings, gameCounter);
 			aveWinnings = lottery.getAveWinnings();
 
-		}while(controlCounter != 1); //whole game do-while loop ends //this wasn't working for 1 line, 1 game so I changed it
+		}while(controlCounter != 1); //whole game do-while loop ends 
 
-		
 		//fetch history here
 		
-		System.out.println("Thanks for playing! This is the end of the lottery game.");
+		System.out.println("\nThanks for playing! This is the end of the lottery game.");
 		
 		lotteryNumbers = lottery.getLottery(); //print the lottery numbers
 		System.out.print("The lottery numbers were: ");
@@ -148,21 +148,14 @@ public class GroupLotteryApp{
 			System.out.println("\nFor game number " + (i+1) + ", you played " + gameHistory[i][0] + " line(s).\nYou won on " + gameHistory[i][1] + " line(s). \nYou won " + gameHistory[i][2] + " euro.");
 			}
 		}
-		
-		/** if we do this we need to do the same for 'line' / 'lines' on 102
-		if(gameCounter>1){
-			 //for correct grammar when displaying the number of games.
-		} else {
-			System.out.println("You played " + gameCounter + " game.");
-		}*/
 
 
 		if(aveWinnings>0){
 			System.out.println("\nYour average winnings per game are " + aveWinnings + " euro.");
-			System.out.println("Your total winnings across all games are " + totalWinnings + " euro.");
+			System.out.println("Your total winnings across all games are " + totalWinnings + " euro.\n");
 		}
 		else{
-			System.out.println("You won nothing in any game.");
+			System.out.println("You won nothing in any game.\n");
 		}
 
 	}
