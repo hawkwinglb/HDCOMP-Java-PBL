@@ -79,8 +79,11 @@ public class GroupLottery{
 
 
 	public void calculateWinnings(){ // method to calculate winnings per game and number of lines won per game
-		winnings = 0; //initialize the sum of the winnings at 0
-
+		winnings = 0; //reinitialise the sum of winnings to 0 for each game
+		linesWon = 0; //reinitialise the number of lines won to 0 for each game
+		
+		//no need to do this for the lotteryWon since the lottery won ends the game
+		
 		for(int i=0; i<matches.length; i++){ //loop into the array of matches (above) - each line represents one index in the array - to add to the entire sum of winnings for 1 game
 			lineWinnings = 0; // winnings per line, reinitialized for each line
 			if(matches[i] == 6){
